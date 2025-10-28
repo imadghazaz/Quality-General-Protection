@@ -1,0 +1,13 @@
+{
+  "name": "firebrigade-website",
+  "version": "1.0.0",
+  "description": "Fire Brigade HTML Template",
+  "scripts": {
+    "dev": "npx serve . -p 5173",
+    "build": "echo 'Static site - no build needed'"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "serve": "^14.2.1"
+  }
+}
