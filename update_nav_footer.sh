@@ -1,20 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Robinets d'Incendie Armés - QGP Fire Protection</title>
-    <link rel="stylesheet" href="assets/css/icons.min.css">
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/responsive.css">
-    <link rel="shortcut icon" type="image/png" href="assets/images/favicon.png"/>
-    <link rel="stylesheet" href="assets/css/colors/color.css" title="color" />
-</head>
-<body itemscope>
-    <div class="preloader"><div class="loader-inner ball-scale-multiple"><div></div><div></div><div></div></div></div>
-    <main>
-                <header class="stick">
+#!/bin/bash
+
+# Define the new simplified navbar
+read -r -d '' NEW_NAVBAR << 'NAVEOF'
+        <header class="stick">
             <div class="tb-br">
                 <div class="container">
                     <div class="scl1 float-left">
@@ -47,68 +35,11 @@
                 </div>
             </div>
         </header>
-        <section>
-            <div class="gap black-layer opc8 overlap144">
-                <div class="fixed-bg2" style="background-image: url(assets/images/pg-tp-bg.jpg);"></div>
-                <div class="container">
-                    <div class="pg-tp-wrp">
-                        <h1 itemprop="headline">Robinets d'Incendie Armés</h1>
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="index.html" title="" itemprop="url">Home</a></li>
-                            <li class="breadcrumb-item"><a href="index.html#services" title="" itemprop="url">Services</a></li>
-                            <li class="breadcrumb-item active">Robinets d'Incendie Armés</li>
-                        </ol>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section>
-            <div class="gap">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12 col-sm-12 col-lg-12">
-                            <div class="service-detail-content">
-                                <div class="text-center" style="margin-bottom: 40px;">
-                                    <img src="assets/images/Robinets-Incendie-Armes.png" alt="Robinets d'Incendie Armés" style="width: 200px; height: 200px; object-fit: contain; border-radius: 50%;">
-                                </div>
+NAVEOF
 
-                                <h2 itemprop="headline">Installation et Maintenance de RIA</h2>
-                                <p itemprop="description">QGP assure l'installation et la maintenance de Robinets d'Incendie Armés (RIA) pour une protection optimale de vos locaux. Nos équipements répondent aux normes les plus strictes.</p>
-
-                                <h3>Nos Services RIA</h3>
-                                <ul style="list-style-type: disc; margin-left: 30px; line-height: 2;">
-                                    <li><strong>Installation complète</strong> - Mise en place de RIA conformes aux normes NF EN 671</li>
-                                    <li><strong>Vérification trimestrielle</strong> - Contrôles réguliers et tests de bon fonctionnement</li>
-                                    <li><strong>Maintenance annuelle</strong> - Entretien complet et certification de conformité</li>
-                                    <li><strong>Remplacement de pièces</strong> - Changement des composants usés ou défectueux</li>
-                                    <li><strong>Formation utilisateurs</strong> - Formation pratique à l'utilisation des RIA</li>
-                                </ul>
-
-                                <h3>Caractéristiques Techniques</h3>
-                                <p>Nos RIA offrent une protection efficace avec :</p>
-                                <ul style="list-style-type: disc; margin-left: 30px; line-height: 2;">
-                                    <li>Tuyaux semi-rigides DN 19, 25 ou 33 mm</li>
-                                    <li>Longueur adaptée selon configuration des lieux</li>
-                                    <li>Dévidoirs automatiques ou manuels</li>
-                                    <li>Coffrets muraux avec signalisation</li>
-                                    <li>Pression et débit conformes aux normes</li>
-                                </ul>
-
-                                <h3>Conformité Réglementaire</h3>
-                                <p>Tous nos RIA sont installés et maintenus conformément aux réglementations en vigueur, assurant la sécurité de vos bâtiments et la conformité lors des contrôles officiels.</p>
-
-                                <div style="margin-top: 40px; padding: 30px; background-color: #f8f9fa; border-radius: 5px;">
-                                    <h3>Besoin d'installer des RIA ?</h3>
-                                    <p>Contactez-nous pour une étude personnalisée de vos besoins.</p>
-                                    <a href="contact.html" class="theme-btn brd-rd3" style="display: inline-block; margin-top: 15px;">Contactez-nous</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-                <footer>
+# Define the new simplified footer
+read -r -d '' NEW_FOOTER << 'FOOTEOF'
+        <footer>
             <div class="gap drk-bg">
                 <div class="container">
                     <div class="ftr-dta remove-ext5">
@@ -188,9 +119,7 @@
                 </div>
             </div>
         </footer>
-    </main>
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
-    <script src="assets/js/custom-scripts.js"></script>
-</body>
-</html>
+FOOTEOF
+
+echo "Navigation and footer templates created"
+echo "Files will need to be updated individually with proper HTML replacement"

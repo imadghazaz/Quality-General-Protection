@@ -1,20 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Robinets d'Incendie Armés - QGP Fire Protection</title>
-    <link rel="stylesheet" href="assets/css/icons.min.css">
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/responsive.css">
-    <link rel="shortcut icon" type="image/png" href="assets/images/favicon.png"/>
-    <link rel="stylesheet" href="assets/css/colors/color.css" title="color" />
-</head>
-<body itemscope>
-    <div class="preloader"><div class="loader-inner ball-scale-multiple"><div></div><div></div><div></div></div></div>
-    <main>
-                <header class="stick">
+#!/usr/bin/env python3
+import re
+import os
+import glob
+
+# New simplified navbar
+NEW_NAVBAR = '''        <header class="stick">
             <div class="tb-br">
                 <div class="container">
                     <div class="scl1 float-left">
@@ -46,69 +36,10 @@
                     </nav>
                 </div>
             </div>
-        </header>
-        <section>
-            <div class="gap black-layer opc8 overlap144">
-                <div class="fixed-bg2" style="background-image: url(assets/images/pg-tp-bg.jpg);"></div>
-                <div class="container">
-                    <div class="pg-tp-wrp">
-                        <h1 itemprop="headline">Robinets d'Incendie Armés</h1>
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="index.html" title="" itemprop="url">Home</a></li>
-                            <li class="breadcrumb-item"><a href="index.html#services" title="" itemprop="url">Services</a></li>
-                            <li class="breadcrumb-item active">Robinets d'Incendie Armés</li>
-                        </ol>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section>
-            <div class="gap">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12 col-sm-12 col-lg-12">
-                            <div class="service-detail-content">
-                                <div class="text-center" style="margin-bottom: 40px;">
-                                    <img src="assets/images/Robinets-Incendie-Armes.png" alt="Robinets d'Incendie Armés" style="width: 200px; height: 200px; object-fit: contain; border-radius: 50%;">
-                                </div>
+        </header>'''
 
-                                <h2 itemprop="headline">Installation et Maintenance de RIA</h2>
-                                <p itemprop="description">QGP assure l'installation et la maintenance de Robinets d'Incendie Armés (RIA) pour une protection optimale de vos locaux. Nos équipements répondent aux normes les plus strictes.</p>
-
-                                <h3>Nos Services RIA</h3>
-                                <ul style="list-style-type: disc; margin-left: 30px; line-height: 2;">
-                                    <li><strong>Installation complète</strong> - Mise en place de RIA conformes aux normes NF EN 671</li>
-                                    <li><strong>Vérification trimestrielle</strong> - Contrôles réguliers et tests de bon fonctionnement</li>
-                                    <li><strong>Maintenance annuelle</strong> - Entretien complet et certification de conformité</li>
-                                    <li><strong>Remplacement de pièces</strong> - Changement des composants usés ou défectueux</li>
-                                    <li><strong>Formation utilisateurs</strong> - Formation pratique à l'utilisation des RIA</li>
-                                </ul>
-
-                                <h3>Caractéristiques Techniques</h3>
-                                <p>Nos RIA offrent une protection efficace avec :</p>
-                                <ul style="list-style-type: disc; margin-left: 30px; line-height: 2;">
-                                    <li>Tuyaux semi-rigides DN 19, 25 ou 33 mm</li>
-                                    <li>Longueur adaptée selon configuration des lieux</li>
-                                    <li>Dévidoirs automatiques ou manuels</li>
-                                    <li>Coffrets muraux avec signalisation</li>
-                                    <li>Pression et débit conformes aux normes</li>
-                                </ul>
-
-                                <h3>Conformité Réglementaire</h3>
-                                <p>Tous nos RIA sont installés et maintenus conformément aux réglementations en vigueur, assurant la sécurité de vos bâtiments et la conformité lors des contrôles officiels.</p>
-
-                                <div style="margin-top: 40px; padding: 30px; background-color: #f8f9fa; border-radius: 5px;">
-                                    <h3>Besoin d'installer des RIA ?</h3>
-                                    <p>Contactez-nous pour une étude personnalisée de vos besoins.</p>
-                                    <a href="contact.html" class="theme-btn brd-rd3" style="display: inline-block; margin-top: 15px;">Contactez-nous</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-                <footer>
+# New simplified footer
+NEW_FOOTER = '''        <footer>
             <div class="gap drk-bg">
                 <div class="container">
                     <div class="ftr-dta remove-ext5">
@@ -187,10 +118,38 @@
                     </div>
                 </div>
             </div>
-        </footer>
-    </main>
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
-    <script src="assets/js/custom-scripts.js"></script>
-</body>
-</html>
+        </footer>'''
+
+def update_html_file(filepath):
+    """Update navbar and footer in an HTML file"""
+    try:
+        with open(filepath, 'r', encoding='utf-8') as f:
+            content = f.read()
+        
+        # Replace header (from <header to </header>)
+        header_pattern = r'<header class="stick">.*?</header>'
+        content = re.sub(header_pattern, NEW_NAVBAR, content, flags=re.DOTALL)
+        
+        # Replace footer (from <footer> to </footer>)
+        footer_pattern = r'<footer>.*?</footer>'
+        content = re.sub(footer_pattern, NEW_FOOTER, content, flags=re.DOTALL)
+        
+        with open(filepath, 'w', encoding='utf-8') as f:
+            f.write(content)
+        
+        print(f"✓ Updated: {os.path.basename(filepath)}")
+        return True
+    except Exception as e:
+        print(f"✗ Error updating {os.path.basename(filepath)}: {str(e)}")
+        return False
+
+# Get all HTML files
+html_files = glob.glob('*.html')
+print(f"Found {len(html_files)} HTML files\n")
+
+success_count = 0
+for html_file in html_files:
+    if update_html_file(html_file):
+        success_count += 1
+
+print(f"\n✓ Successfully updated {success_count}/{len(html_files)} files")
